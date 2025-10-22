@@ -20,8 +20,10 @@ import { MeshLineGeometry, MeshLineMaterial } from "meshline";
 import * as THREE from "three";
 
 // replace with your own imports, see the usage snippet for details
-import cardGLB from "./card.glb";
-import lanyard from "./lanyard.png";
+// import cardGLB from "./card.glb";
+// import lanyard from "./lanyard.png";
+const cardGLB = "";
+const lanyard = "";
 
 extend({ MeshLineGeometry, MeshLineMaterial });
 
@@ -281,17 +283,20 @@ function Band({ maxSpeed = 50, minSpeed = 0 }: BandProps) {
           </group>
         </RigidBody>
       </group>
-      <mesh ref={band}>
-        <meshLineGeometry />
+            <mesh ref={band}>
+        {/* <meshLineGeometry />
         <meshLineMaterial
           color="white"
           depthTest={false}
           resolution={isSmall ? [1000, 2000] : [1000, 1000]}
           useMap
           map={texture}
-          repeat={[-4, 1]}
-          lineWidth={1}
-        />
+          repeat={[-200, 1]}
+          dashArray={0.2}
+          dashOffset={offset}
+          dashRatio={0.6}
+          lineWidth={5}
+        /> */}
       </mesh>
     </>
   );
