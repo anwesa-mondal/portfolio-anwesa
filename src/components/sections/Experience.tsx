@@ -310,7 +310,7 @@ Proposes a structurally aware, efficient, and adaptive brain registration paradi
                   { name: "Jupyter", color: "purple" },
                   { name: "Git", color: "gray" },
                 ]}
-                githubLink="https://github.com/username/cmu-research"
+                githubLink="https://github.com/anwesa-mondal/Segmentation-Map-Registration"
               />
             }
           />
