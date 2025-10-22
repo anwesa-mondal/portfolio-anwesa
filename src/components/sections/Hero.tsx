@@ -131,13 +131,22 @@ export default function Hero() {
             <div className="flex gap-4 w-full"></div>
           </div>
         </div>
-        <div className="max-w-[30vw] w-full">
+        <div className="max-w-[30vw] w-full relative flex items-center justify-center">
           <Orb
             hoverIntensity={0.3}
             rotateOnHover={true}
             hue={0}
             forceHoverState={false}
           />
+          <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+            <div className="w-64 h-64 rounded-full overflow-hidden border-4 border-white/20 backdrop-blur-sm bg-white/5 shadow-2xl">
+              <img
+                src="/dp.jpeg"
+                alt="Anwesa Mondal"
+                className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+              />
+            </div>
+          </div>
         </div>
       </section>
       <DarkVeil
