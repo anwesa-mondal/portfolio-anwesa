@@ -162,7 +162,7 @@ const ModalContentComponent = memo(
 
             <div className="bg-gradient-to-r from-green-900/30 to-blue-900/30 p-6 rounded-lg border border-green-500/20">
               <h4 className="text-xl font-semibold text-white mb-3">
-                Conference Publication :
+                Publication :
               </h4>
               <p className="text-[rgb(var(--secondary))]">{outcomes}</p>
             </div>
