@@ -283,31 +283,26 @@ const Experience = memo(() => {
                 description="Working on cutting-edge research in Artificial Intelligence and Machine Learning"
                 tasks={[
                   {
-                    title: "AI Model Development",
+                    title: "Anatomy-Constrained Framework",
                     description:
-                      "Developed novel deep learning architectures for computer vision tasks, achieving 15% improvement in accuracy over baseline models.",
+                      "Developed an unsupervised deep learning framework for brain MRI template registration using a dual-output 3D U-Net with adaptive voxel-wise regularization.",
                     color: "blue",
                   },
                   {
-                    title: "Research Publication",
+                    title: "Adaptive λ-Map Design",
                     description:
-                      "Co-authored paper on 'Advanced Neural Networks for Image Recognition' submitted to CVPR 2026.",
+                      "Implemented a λ-map–based local smoothness control that dynamically regulates deformation strength across brain regions, preserving fine cortical details and topology.",
                     color: "green",
                   },
                   {
-                    title: "Data Analysis",
+                    title: "Scalable Neuroimaging Pipeline",
                     description:
-                      "Analyzed large-scale datasets (500K+ samples) using advanced statistical methods and machine learning techniques.",
+                      "Replaced iterative optimization with direct deformation prediction, enabling faster, anatomically consistent alignments for large-scale atlas construction.",
                     color: "purple",
-                  },
-                  {
-                    title: "Collaboration",
-                    description:
-                      "Collaborated with PhD students and faculty on interdisciplinary AI research projects.",
-                    color: "orange",
-                  },
+                  }
                 ]}
-                outcomes="The research contributes to advancing the field of AI with practical applications in autonomous systems, medical imaging, and sustainable technology solutions."
+                outcomes="Ongoing project under my lead, aimed for publication in Imaging Neuroscience (MIT Press).
+Proposes a structurally aware, efficient, and adaptive brain registration paradigm, advancing the field of unsupervised neuroimaging and atlas alignment."
                 technologies={[
                   { name: "Python", color: "blue" },
                   { name: "TensorFlow", color: "orange" },
