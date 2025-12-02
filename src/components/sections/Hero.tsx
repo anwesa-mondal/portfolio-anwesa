@@ -123,7 +123,7 @@ export default function Hero() {
               ariaLabel="Technology partners"
             /> */}
             <button
-              onClick={() => window.open("/anwesa_mondal_resume.pdf", "_blank")}
+              onClick={() => window.open("/resume_anwesa.pdf", "_blank")}
               className="text-white text-xl mt-8 cursor-pointer py-2 px-15 rounded-full transition-all duration-100 border-[1px] border-neutral-500 hover:shadow-[0_0_20px_rgba(147,51,234,0.6)] hover:scale-105 hover:backdrop-blur-sm hover:bg-white/10"
             >
               My resume
