@@ -22,6 +22,7 @@ const Navigation = memo(() => {
     { name: "Home", link: "#hero" },
     { name: "Education", link: "#education" },
     { name: "Experience", link: "#experience" },
+    { name: "CP", link: "#competitive-programming" },
     { name: "Projects", link: "#projects" },
     { name: "Gallery", link: "#gallery" },
     { name: "Contact", link: "#contact" },

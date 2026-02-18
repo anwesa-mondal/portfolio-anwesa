@@ -6,14 +6,17 @@ import { motion, AnimatePresence } from "framer-motion";
 interface ToastProps {
   message: string;
   duration?: number;
+  type?: "success" | "error" | "info";
   onClose: () => void;
 }
 
-const Toast: React.FC<ToastProps> = ({ message, duration = 3000, onClose }) => {
+const Toast: React.FC<ToastProps> = ({ message, duration = 3000, type = "info", onClose }) => {
   useEffect(() => {
     const timer = setTimeout(onClose, duration);
     return () => clearTimeout(timer);
   }, [duration, onClose]);
+
+  const bgColor = type === "success" ? "bg-green-500/80" : type === "error" ? "bg-red-500/80" : "bg-black/50";
 
   return (
     <AnimatePresence>
@@ -29,8 +32,8 @@ const Toast: React.FC<ToastProps> = ({ message, duration = 3000, onClose }) => {
         }}
         className="fixed bottom-4 right-4 z-50"
       >
-        <div className="bg-black/50 backdrop-blur-md text-white px-4 py-2 rounded-xl shadow-lg border border-gray-600">
-          <p className="text-2xl font-medium">{message}</p>
+        <div className={`${bgColor} backdrop-blur-md text-white px-4 py-2 rounded-xl shadow-lg border border-gray-600`}>
+          <p className="text-xl font-medium">{message}</p>
         </div>
       </motion.div>
     </AnimatePresence>

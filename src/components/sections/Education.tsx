@@ -115,7 +115,7 @@ export default function Education() {
                 {/* Left side - Education details */}
                 <div className="flex-1">
                   <h2 className="text-3xl font-bold text-slate-100 mb-2 group-hover:text-sky-400 transition-colors duration-300">
-                    INDIRA GANDHI DELHI TECHNICAL UNIVERSITY
+                    INDIRA GANDHI DELHI TECHNICAL UNIVERSITY FOR WOMEN
                   </h2>
                   <h3 className="text-xl text-slate-300 mb-4">
                     Bachelor of Technology in Computer Science with
@@ -124,7 +124,7 @@ export default function Education() {
                   <div className="flex items-center gap-2 mb-6">
                     <span className="text-sm text-slate-400">CGPA:</span>
                     <span className="text-2xl font-bold text-purple-500">
-                      8.72/10
+                      8.99/10
                     </span>
                   </div>
 
@@ -140,7 +140,7 @@ export default function Education() {
                         "Computer Networks",
                         "Object Oriented Programming",
                         "Database Management Systems",
-                        "Proggramming with Python",
+                        "Programming with Python",
                         "Discrete Mathematics"
                       ].map((course, index) => (
                         <div

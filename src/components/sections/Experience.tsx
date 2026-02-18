@@ -271,7 +271,7 @@ const Experience = memo(() => {
   const data = useMemo(
     () => [
       {
-        title: "May '25 - Present",
+        title: "July '25 - Oct '25",
         content: (
           <ExperienceCard
             title="Research Intern at Carnegie Mellon University, Pittsburgh"
@@ -317,7 +317,7 @@ Proposes a structurally aware, efficient, and adaptive brain registration paradi
         ),
       },
       {
-        title: "Jun '25 - Jul '25",
+        title: "May '25 - Jul '25",
         content: (
           <ExperienceCard
             title="Research Intern at National Institute of Technology, Rourkela"
@@ -347,7 +347,7 @@ Proposes a structurally aware, efficient, and adaptive brain registration paradi
                     color: "purple",
                   }
                 ]}
-                outcomes="Research paper accepted for presentation and publication at the 5th Indian IEOM Conference 2025, VIT Vellore, India (Nov 6–8, 2025)."
+                outcomes="Research paper published and presented at the 5th Indian IEOM Conference 2025, VIT Vellore, India (Nov 6–8, 2025)."
                 technologies={[
                   { name: "Python", color: "blue" },
                   { name: "Scikit-learn", color: "orange" },
@@ -355,8 +355,8 @@ Proposes a structurally aware, efficient, and adaptive brain registration paradi
                   { name: "Matplotlib", color: "purple" },
                   { name: "NumPy", color: "gray" },
                 ]}
-                githubLink="https://drive.google.com/file/d/YOUR_DRIVE_FILE_ID/view?usp=sharing"
-                linkLabel="View Certificate"
+                githubLink="https://index.ieomsociety.org/index.cfm/item/57997"
+                linkLabel="View Research Paper"
               />
             }
           />

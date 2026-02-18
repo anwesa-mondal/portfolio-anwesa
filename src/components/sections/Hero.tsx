@@ -1,6 +1,7 @@
 "use client";
 
 import RotatingText from "@/components/RotatingText";
+import TextType from "@/components/TextType";
 import { SiPython, SiPytorch, SiCplusplus, SiNumpy } from "react-icons/si";
 import dynamic from "next/dynamic";
 import GradientText from "../GradientText";
@@ -88,14 +89,21 @@ export default function Hero() {
             >
               ANWESA MONDAL
             </GradientText>
-            <TrueFocus
-              sentence="Machine Learning  Data Structures and Algorithms"
-              manualMode={false}
-              blurAmount={6}
-              borderColor="blue"
-              animationDuration={3}
-              pauseBetweenAnimations={2}
-              fontSize="1.5rem"
+            <TextType
+              text={[
+                "AI/ML Engineer",
+                "Researcher",
+                "Data Scientist",
+                "Competitive Programming (C++/DSA)",
+              ]}
+              as="div"
+              className="text-2xl text-slate-300 font-semibold"
+              typingSpeed={50}
+              deletingSpeed={30}
+              pauseDuration={1500}
+              initialDelay={200}
+              loop={true}
+              showCursor={true}
             />
             {/* <RotatingText
               texts={roles}
@@ -123,7 +131,7 @@ export default function Hero() {
               ariaLabel="Technology partners"
             /> */}
             <button
-              onClick={() => window.open("/resume_anwesa.pdf", "_blank")}
+              onClick={() => window.open("/Resume_(Anwesa-Mondal).pdf", "_blank")}
               className="text-white text-xl mt-8 cursor-pointer py-2 px-15 rounded-full transition-all duration-100 border-[1px] border-neutral-500 hover:shadow-[0_0_20px_rgba(147,51,234,0.6)] hover:scale-105 hover:backdrop-blur-sm hover:bg-white/10"
             >
               My resume

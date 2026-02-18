@@ -101,7 +101,7 @@ export const NavBody = memo(
     return (
       <motion.div
         animate={{
-          width: visible ? "40%" : "100%",
+          width: visible ? "60%" : "100%",
           y: visible ? 20 : 0,
         }}
         transition={{

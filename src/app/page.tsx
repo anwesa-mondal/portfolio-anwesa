@@ -2,6 +2,7 @@ import Navigation from "@/components/Navigation";
 import Contact from "@/components/sections/Contact";
 import Education from "@/components/sections/Education";
 import Experience from "@/components/sections/Experience";
+import CompetitiveProgramming from "@/components/sections/CompetitiveProgramming";
 import Footer from "@/components/sections/Footer";
 import Gallery from "@/components/sections/Gallery";
 import Hero from "@/components/sections/Hero";
@@ -15,6 +16,7 @@ export default function Home() {
       <Hero />
       <Education />
       <Experience />
+      <CompetitiveProgramming />
       <Projects />
       <Gallery />
       <RateMe />
