@@ -18,6 +18,11 @@ export const metadata: Metadata = {
   title: "Portfolio - AI/ML Engineer & Researcher",
   description:
     "Portfolio showcasing AI/ML engineering, research, and competitive programming expertise",
+  icons: {
+    icon: "/logo.jpg",
+    shortcut: "/logo.jpg",
+    apple: "/logo.jpg",
+  },
 };
 
 export default function RootLayout({
