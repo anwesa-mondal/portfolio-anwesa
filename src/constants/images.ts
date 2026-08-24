@@ -1,7 +1,7 @@
 export const images = {
   logo: "/logo.jpg",
-  cmu: "/cmu.png",
-  nitr: "/nitr.png",
+  harvardMedicalSchool: "/harvard-medical-school.png",
+  nitRourkela: "/nit-rourkela.png",
   safeDrive: "/safeDrive.jpg",
   careBridge: "/carebridge.png",
   gpt2: "/gpt2.png",

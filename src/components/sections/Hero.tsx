@@ -1,10 +1,10 @@
 "use client";
 
 import RotatingText from "@/components/RotatingText";
-import TextType from "@/components/TextType";
 import { SiPython, SiPytorch, SiCplusplus, SiNumpy } from "react-icons/si";
 import dynamic from "next/dynamic";
 import GradientText from "../GradientText";
+import { useEffect, useState } from "react";
 
 // Lazy load performance-heavy components
 const Orb = dynamic(() => import("../Orb"), {
@@ -47,16 +47,25 @@ const techLogos = [
 ];
 
 const roles = [
-  "AI/ML Engineer",
-  "Researcher",
-  "Data Scientist",
-  "Competitive Programming (C++/DSA)",
+  "Competitive Programmer",
+  "Aspiring Software Engineer",
+  "AI/ML Enthusiast",
 ];
 
 export default function Hero() {
+  const [activeRole, setActiveRole] = useState(0);
+
+  useEffect(() => {
+    const roleTimer = window.setInterval(() => {
+      setActiveRole((currentRole) => (currentRole + 1) % roles.length);
+    }, 3000);
+
+    return () => window.clearInterval(roleTimer);
+  }, []);
+
   return (
     <div id="hero" className="relative w-full h-[100vh]">
-      <section className="absolute w-full h-[100vh] bg-transparent flex justify-center items-stretch gap-15 pt-20 pb-20">
+      <section className="absolute z-10 w-full h-[100vh] bg-transparent flex justify-center items-stretch gap-15 pt-20 pb-20">
         <div className="max-w-[50vw] w-full flex flex-col justify-center">
           <div className="space-y-6 flex flex-col justify-start items-start">
             {/* <SplitText
@@ -89,22 +98,28 @@ export default function Hero() {
             >
               ANWESA MONDAL
             </GradientText>
-            <TextType
-              text={[
-                "AI/ML Engineer",
-                "Researcher",
-                "Data Scientist",
-                "Competitive Programming (C++/DSA)",
-              ]}
-              as="div"
-              className="text-2xl text-slate-300 font-semibold"
-              typingSpeed={50}
-              deletingSpeed={30}
-              pauseDuration={1500}
-              initialDelay={200}
-              loop={true}
-              showCursor={true}
-            />
+            <div className="flex min-h-14 flex-col items-start gap-2">
+              <div className="flex h-8 items-center text-2xl font-semibold text-white">
+                <span>{roles[activeRole]}</span>
+              </div>
+              <div className="flex gap-2" role="tablist" aria-label="Roles">
+                {roles.map((role, index) => (
+                  <button
+                    key={role}
+                    type="button"
+                    role="tab"
+                    aria-selected={activeRole === index}
+                    aria-label={`Show ${role}`}
+                    onClick={() => setActiveRole(index)}
+                    className={`h-1.5 rounded-full transition-all duration-300 ${
+                      activeRole === index
+                        ? "w-8 bg-blue-400"
+                        : "w-2 bg-slate-600 hover:bg-slate-400"
+                    }`}
+                  />
+                ))}
+              </div>
+            </div>
             {/* <RotatingText
               texts={roles}
               mainClassName="px-2 sm:px-2 md:px-3 overflow-hidden py-0.5 sm:py-1 md:py-2 justify-start"

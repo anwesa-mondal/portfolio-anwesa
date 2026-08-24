@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useRef } from "react";
+import React, { ReactNode, useState, useRef } from "react";
 import {
   motion,
   useTransform,
@@ -16,7 +16,7 @@ export const AnimatedTooltip = ({
     id: number;
     name: string;
     designation: string;
-    image: string;
+    image: ReactNode;
   }[];
 }) => {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
@@ -84,14 +84,13 @@ export const AnimatedTooltip = ({
               </motion.div>
             )}
           </AnimatePresence>
-          <img
+          <div
             onMouseMove={handleMouseMove}
-            height={100}
-            width={100}
-            src={item.image}
-            alt={item.name}
-            className="relative !m-0 h-14 w-14 rounded-full border-2 border-white object-cover object-top !p-0 transition duration-500 group-hover:z-30 group-hover:scale-105"
-          />
+            aria-label={item.name}
+            className="relative !m-0 flex h-14 w-14 items-center justify-center rounded-full border-2 border-white bg-zinc-900 !p-2 text-3xl transition duration-500 group-hover:z-30 group-hover:scale-105"
+          >
+            {item.image}
+          </div>
         </div>
       ))}
     </>

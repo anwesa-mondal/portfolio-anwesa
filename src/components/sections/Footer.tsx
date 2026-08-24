@@ -1,4 +1,3 @@
-import Threads from "@/components/Threads";
 import Link from "next/link";
 
 export default function Footer() {
@@ -64,11 +63,6 @@ export default function Footer() {
 
   return (
     <footer className="relative text-neutral-300 bg-gradient-to-t from-[rgb(var(--muted))]/30 to-neutral-900 py-16 px-4 overflow-hidden mt-32">
-      {/* Background Effect */}
-      <div className="absolute inset-0 opacity-20">
-        <Threads enableMouseInteraction={true} />
-      </div>
-
       <div className="relative z-10 max-w-6xl mx-auto">
         {/* Main Footer Content */}
         <div className="grid md:grid-cols-4 gap-8 mb-12">

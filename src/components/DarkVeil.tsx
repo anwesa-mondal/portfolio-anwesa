@@ -89,7 +89,6 @@ export default function DarkVeil({
   hueShift = 0,
   noiseIntensity = 0,
   scanlineIntensity = 0,
-  speed = 0.5,
   scanlineFrequency = 0,
   warpAmount = 0,
   resolutionScale = 1,
@@ -133,32 +132,21 @@ export default function DarkVeil({
     window.addEventListener("resize", resize);
     resize();
 
-    const start = performance.now();
-    let frame = 0;
-
-    const loop = () => {
-      program.uniforms.uTime.value =
-        ((performance.now() - start) / 1000) * speed;
-      program.uniforms.uHueShift.value = hueShift;
-      program.uniforms.uNoise.value = noiseIntensity;
-      program.uniforms.uScan.value = scanlineIntensity;
-      program.uniforms.uScanFreq.value = scanlineFrequency;
-      program.uniforms.uWarp.value = warpAmount;
-      renderer.render({ scene: mesh });
-      frame = requestAnimationFrame(loop);
-    };
-
-    loop();
+    program.uniforms.uTime.value = 0;
+    program.uniforms.uHueShift.value = hueShift;
+    program.uniforms.uNoise.value = noiseIntensity;
+    program.uniforms.uScan.value = scanlineIntensity;
+    program.uniforms.uScanFreq.value = scanlineFrequency;
+    program.uniforms.uWarp.value = warpAmount;
+    renderer.render({ scene: mesh });
 
     return () => {
-      cancelAnimationFrame(frame);
       window.removeEventListener("resize", resize);
     };
   }, [
     hueShift,
     noiseIntensity,
     scanlineIntensity,
-    speed,
     scanlineFrequency,
     warpAmount,
     resolutionScale,

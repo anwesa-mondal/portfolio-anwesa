@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { Renderer, Program, Mesh, Triangle, Vec3 } from "ogl";
+import { Renderer, Program, Mesh, Triangle, Vec2, Vec3 } from "ogl";
 
 interface OrbProps {
   hue?: number;
@@ -38,6 +38,8 @@ export default function Orb({
     uniform float hover;
     uniform float rot;
     uniform float hoverIntensity;
+    uniform vec2 waveOrigin;
+    uniform float waveTime;
     varying vec2 vUv;
 
     vec3 rgb2yiq(vec3 c) {
@@ -166,6 +168,13 @@ export default function Orb({
       
       uv.x += hover * hoverIntensity * 0.1 * sin(uv.y * 10.0 + iTime);
       uv.y += hover * hoverIntensity * 0.1 * sin(uv.x * 10.0 + iTime);
+
+      vec2 fromWaveOrigin = uv - waveOrigin;
+      float waveDistance = length(fromWaveOrigin);
+      float wave = sin(waveDistance * 34.0 - waveTime * 16.0)
+        * exp(-waveDistance * 3.5)
+        * exp(-waveTime * 2.5);
+      uv += normalize(fromWaveOrigin + vec2(0.0001)) * wave * hoverIntensity * 0.12;
       
       return draw(uv);
     }
@@ -203,6 +212,8 @@ export default function Orb({
         hover: { value: 0 },
         rot: { value: 0 },
         hoverIntensity: { value: hoverIntensity },
+        waveOrigin: { value: new Vec2(0, 0) },
+        waveTime: { value: 0 },
       },
     });
 
@@ -225,64 +236,59 @@ export default function Orb({
     window.addEventListener("resize", resize);
     resize();
 
-    let targetHover = 0;
-    let lastTime = 0;
-    let currentRot = 0;
-    const rotationSpeed = 0.3;
+    program.uniforms.iTime.value = 0;
+    program.uniforms.rot.value = 0;
+    program.uniforms.hue.value = hue;
+    program.uniforms.hoverIntensity.value = hoverIntensity;
 
-    const handleMouseMove = (e: MouseEvent) => {
-      const rect = container.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-      const width = rect.width;
-      const height = rect.height;
-      const size = Math.min(width, height);
-      const centerX = width / 2;
-      const centerY = height / 2;
-      const uvX = ((x - centerX) / size) * 2.0;
-      const uvY = ((y - centerY) / size) * 2.0;
-
-      if (Math.sqrt(uvX * uvX + uvY * uvY) < 0.8) {
-        targetHover = 1;
-      } else {
-        targetHover = 0;
-      }
-    };
-
-    const handleMouseLeave = () => {
-      targetHover = 0;
-    };
-
-    container.addEventListener("mousemove", handleMouseMove);
-    container.addEventListener("mouseleave", handleMouseLeave);
-
-    let rafId: number;
-    const update = (t: number) => {
-      rafId = requestAnimationFrame(update);
-      const dt = (t - lastTime) * 0.001;
-      lastTime = t;
-      program.uniforms.iTime.value = t * 0.001;
-      program.uniforms.hue.value = hue;
-      program.uniforms.hoverIntensity.value = hoverIntensity;
-
-      const effectiveHover = forceHoverState ? 1 : targetHover;
-      program.uniforms.hover.value +=
-        (effectiveHover - program.uniforms.hover.value) * 0.1;
-
-      if (rotateOnHover && effectiveHover > 0.5) {
-        currentRot += dt * rotationSpeed;
-      }
-      program.uniforms.rot.value = currentRot;
-
+    const renderFrame = () => {
       renderer.render({ scene: mesh });
     };
-    rafId = requestAnimationFrame(update);
+
+    let rippleFrame: number | null = null;
+    let rippleStartedAt = 0;
+
+    const handleClick = (event: MouseEvent) => {
+      const rect = container.getBoundingClientRect();
+      const x = event.clientX - rect.left;
+      const y = event.clientY - rect.top;
+      const size = Math.min(rect.width, rect.height);
+      const uvX = ((x - rect.width / 2) / size) * 2;
+      const uvY = ((y - rect.height / 2) / size) * 2;
+      const isInsideOrb = Math.sqrt(uvX * uvX + uvY * uvY) < 0.8;
+
+      if (!isInsideOrb && !forceHoverState) return;
+
+      program.uniforms.waveOrigin.value.set(uvX, -uvY);
+      rippleStartedAt = performance.now();
+
+      if (rippleFrame !== null) cancelAnimationFrame(rippleFrame);
+      const animateRipple = (time: number) => {
+        const elapsed = (time - rippleStartedAt) / 1000;
+        program.uniforms.waveTime.value = elapsed;
+        program.uniforms.hover.value = 1;
+        renderFrame();
+
+        if (elapsed < 1.2) {
+          rippleFrame = requestAnimationFrame(animateRipple);
+        } else {
+          rippleFrame = null;
+          program.uniforms.waveTime.value = 0;
+          program.uniforms.hover.value = 0;
+          renderFrame();
+        }
+      };
+
+      rippleFrame = requestAnimationFrame(animateRipple);
+    };
+
+    container.addEventListener("click", handleClick);
+    renderFrame();
 
     return () => {
-      cancelAnimationFrame(rafId);
+      if (rippleFrame !== null) cancelAnimationFrame(rippleFrame);
       window.removeEventListener("resize", resize);
-      container.removeEventListener("mousemove", handleMouseMove);
-      container.removeEventListener("mouseleave", handleMouseLeave);
+      container.removeEventListener("click", handleClick);
       container.removeChild(gl.canvas);
       gl.getExtension("WEBGL_lose_context")?.loseContext();
     };

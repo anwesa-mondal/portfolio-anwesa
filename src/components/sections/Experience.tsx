@@ -93,11 +93,11 @@ const TaskCard = memo(
     task: { title: string; description: string; color: string };
     index: number;
   }) => (
-    <div key={index} className="bg-zinc-800 p-4 rounded-lg min-w-md max-w-lg">
+    <div key={index} className="h-full rounded-xl border border-white/10 bg-zinc-900/80 p-5 shadow-lg">
       <h4 className={`text-lg font-semibold mb-2 text-${task.color}-400`}>
         {task.title}
       </h4>
-      <p className="text-[rgb(var(--secondary))]">{task.description}</p>
+      <p className="text-sm leading-6 text-zinc-300">{task.description}</p>
     </div>
   )
 );
@@ -139,37 +139,35 @@ const ModalContentComponent = memo(
     const memoizedTechnologies = useMemo(() => technologies, [technologies]);
 
     return (
-      <ModalBody className="max-w-7xl">
-        <ModalContent className="space-y-6 w-full max-w-7xl">
-          <div className="text-center mb-6">
-            <p className="text-[rgb(var(--secondary))] text-xl font-bold">
+      <ModalBody className="max-w-6xl border border-white/10 bg-zinc-950 text-white shadow-2xl">
+        <ModalContent className="w-full max-w-6xl space-y-8 bg-zinc-950 p-6 md:p-10">
+          <div className="border-b border-white/10 pb-6 pr-8">
+            <p className="text-lg leading-7 text-zinc-200 md:text-xl">
               {description}
             </p>
           </div>
 
-          <div className="space-y-4">
-            <h3 className="text-lg font-semibold text-white mb-4">
+          <div className="space-y-5">
+            <h3 className="mb-4 text-xl font-semibold text-white">
               Key Tasks & Achievements
             </h3>
 
-            <div className="w-full h-[40%] overflow-auto">
-              <div className="flex gap-4 flex-row h-full">
-                {memoizedTasks.map((task, index) => (
-                  <TaskCard key={task.title} task={task} index={index} />
-                ))}
-              </div>
+            <div className="grid w-full gap-4 md:grid-cols-2 lg:grid-cols-3">
+              {memoizedTasks.map((task, index) => (
+                <TaskCard key={task.title} task={task} index={index} />
+              ))}
             </div>
 
-            <div className="bg-gradient-to-r from-green-900/30 to-blue-900/30 p-6 rounded-lg border border-green-500/20">
-              <h4 className="text-xl font-semibold text-white mb-3">
-                Publication :
+            <div className="rounded-xl border border-blue-400/20 bg-blue-950/30 p-6">
+              <h4 className="mb-3 text-lg font-semibold text-blue-200">
+                Research Outcome
               </h4>
-              <p className="text-[rgb(var(--secondary))]">{outcomes}</p>
+              <p className="leading-7 text-zinc-300">{outcomes}</p>
             </div>
           </div>
         </ModalContent>
-        <ModalFooter className="gap-4 pt-6">
-          <div className="flex items-center justify-between w-full">
+        <ModalFooter className="border-t border-white/10 bg-zinc-900 px-6 py-5 md:px-10">
+          <div className="flex w-full flex-col items-start justify-between gap-4 md:flex-row md:items-center">
             <div className="flex flex-wrap gap-2">
               {memoizedTechnologies.map((tech) => (
                 <TechBadge key={tech.name} tech={tech} />
@@ -210,7 +208,8 @@ const ExperienceCard = memo(
     <Modal>
       <ModalTrigger className="flex -translate-y-10 justify-center group/modal-btn">
         <BackgroundGradient
-          className="rounded-[22px] bg-black/80"
+          animate={false}
+          className="rounded-[22px] border border-white/10 bg-zinc-950 px-6 py-6 shadow-[0_18px_50px_rgba(0,0,0,0.35)]"
           containerClassName="w-full"
         >
           <GlareHover
@@ -220,14 +219,14 @@ const ExperienceCard = memo(
             glareSize={300}
             transitionDuration={800}
             playOnce={false}
-            className="px-6"
+            className="px-0"
           >
             <div className="flex items-center justify-between w-full">
               <div className="flex-1 w-3/4 pr-4 space-y-3">
-                <h2 className="text-xl text-start font-bold text-neutral-300">
+                <h2 className="text-xl text-start font-bold text-white">
                   {title}
                 </h2>
-                <p className="text-lg text-start font-bold text-neutral-500 w-[80%]">
+                <p className="text-base leading-7 text-start font-medium text-zinc-300 w-full md:w-[85%]">
                   {subtitle}
                 </p>
               </div>
@@ -274,13 +273,13 @@ const Experience = memo(() => {
         title: "July '25 - Oct '25",
         content: (
           <ExperienceCard
-            title="Research Intern at Carnegie Mellon University, Pittsburgh"
+            title="Research Intern at Harvard Medical School"
             subtitle="Discover detailed insights and outcomes—click to view the full research experience."
-            imageSrc={images.cmu}
-            imageAlt="Carnegie Mellon University"
+            imageSrc={images.harvardMedicalSchool}
+            imageAlt="Harvard Medical School"
             modalContent={
               <ModalContentComponent
-                description="Working on cutting-edge research in Artificial Intelligence and Machine Learning"
+                description="Research Intern at the Laboratory for Computational Neuroimaging, Harvard Medical School, working on cutting-edge research in Artificial Intelligence and Machine Learning"
                 tasks={[
                   {
                     title: "Anatomy-Constrained Framework",
@@ -310,7 +309,8 @@ Proposes a structurally aware, efficient, and adaptive brain registration paradi
                   { name: "Jupyter", color: "purple" },
                   { name: "Git", color: "gray" },
                 ]}
-                githubLink="https://github.com/anwesa-mondal/Segmentation-Map-Registration"
+                githubLink="https://drive.google.com/file/d/1JDGWZFIRfIt1JePI-oQXALLP4GeAoY-X/view"
+                linkLabel="Recommendation Letter"
               />
             }
           />
@@ -322,7 +322,7 @@ Proposes a structurally aware, efficient, and adaptive brain registration paradi
           <ExperienceCard
             title="Research Intern at National Institute of Technology, Rourkela"
             subtitle="Explore the research journey and outcomes—click to view detailed internship contributions."
-            imageSrc={images.nitr}
+            imageSrc={images.nitRourkela}
             imageAlt="National Institute of Technology"
             modalContent={
               <ModalContentComponent

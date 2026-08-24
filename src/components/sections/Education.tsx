@@ -6,7 +6,15 @@ import { motion } from "framer-motion";
 import dynamic from "next/dynamic";
 import { BackgroundGradient } from "../ui/background-gradient";
 import { AnimatedTooltip } from "../ui/animated-tooltip";
-import { SiCplusplus, SiNumpy, SiPython, SiPytorch } from "react-icons/si";
+import {
+  SiCplusplus,
+  SiNumpy,
+  SiPython,
+  SiPytorch,
+  SiTensorflow,
+  SiPandas,
+  SiPostgresql,
+} from "react-icons/si";
 
 const VariableProximity = dynamic(() => import("../VariableProximity"), {
   ssr: false,
@@ -27,43 +35,43 @@ const techLogos = [
     id: 1,
     name: "Python",
     designation: "Programming Language",
-    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Python-logo-notext.svg/1200px-Python-logo-notext.svg.png",
+    image: <SiPython className="text-[#3776AB]" />,
   },
   {
     id: 2,
     name: "PyTorch",
     designation: "Deep Learning Framework",
-    image: "https://pytorch.org/assets/images/pytorch-logo.png",
+    image: <SiPytorch className="text-[#EE4C2C]" />,
   },
   {
     id: 3,
     name: "TensorFlow",
     designation: "Machine Learning Framework",
-    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Tensorflow_logo.svg/1200px-Tensorflow_logo.svg.png",
+    image: <SiTensorflow className="text-[#FF6F00]" />,
   },
   {
     id: 4,
     name: "NumPy",
     designation: "Scientific Computing",
-    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/NumPy_logo_2020.svg/1200px-NumPy_logo_2020.svg.png",
+    image: <SiNumpy className="text-[#4D77CF]" />,
   },
   {
     id: 5,
     name: "Pandas",
     designation: "Data Analysis",
-    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Pandas_logo.svg/1200px-Pandas_logo.svg.png",
+    image: <SiPandas className="text-[#150458]" />,
   },
   {
     id: 6,
     name: "C++",
     designation: "Programming Language",
-    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/ISO_C%2B%2B_Logo.svg/1200px-ISO_C%2B%2B_Logo.svg.png",
+    image: <SiCplusplus className="text-[#00599C]" />,
   },
   {
     id: 8,
     name: "PostgreSQL",
     designation: "Database",
-    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Postgresql_elephant.svg/1200px-Postgresql_elephant.svg.png",
+    image: <SiPostgresql className="text-[#4169E1]" />,
   }
 ];
 
@@ -124,7 +132,7 @@ export default function Education() {
                   <div className="flex items-center gap-2 mb-6">
                     <span className="text-sm text-slate-400">CGPA:</span>
                     <span className="text-2xl font-bold text-purple-500">
-                      8.99/10
+                      9.15/10
                     </span>
                   </div>
 
